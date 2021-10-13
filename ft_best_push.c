@@ -1,48 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_best_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 16:50:29 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/09 07:06:16 by vduriez          ###   ########.fr       */
+/*   Created: 2021/10/11 02:40:00 by vduriez           #+#    #+#             */
+/*   Updated: 2021/10/13 11:30:37 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_argsfree(t_data data)
+void	ft_best_push(t_list *a, t_list *b, t_data data)
 {
-	int	i;
-
-	i = 0;
-	while (i < data.nbargs)
-	{
-		free(data.args[i]);
-		i++;
-	}
-	free(data.args);
-}
-
-int	ft_countnbrs(char *str)
-{
-	int	i;
-	int	j;
+	long	i;
+	long	j;
 
 	i = 0;
 	j = 0;
-	while (str[i])
+	while (i < data.nbargs)
 	{
-		while (str[i] == 32)
-			i++;
-		if (str[i] != 32)
-		{
+		if (a->first->value < data.median && a->first->value != data.lowest)
 			j++;
-			i++;
-		}
-		while (str[i] && str[i] != 32)
-			i++;
+		if (a->first->value < data.median && a->first->value != data.lowest)
+			ft_pb(a, b);
+		else
+			ft_ra(a);
+		i++;
 	}
-	return (j);
+	i = 0;
+	while (i < data.nbargs - j)
+	{
+		if (a->first->value > data.median && a->first->value != data.highest)
+			ft_pb(a, b);
+		else
+			ft_ra(a);
+		i++;
+	}
+	if (!ft_check_sorted(a))
+		ft_sort3(a);
+	ft_insert_sort(a, b, data);
 }

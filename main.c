@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/09 08:25:41 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/13 15:48:24 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,50 @@
 #include <stdlib.h>
 #include "push_swap.h"
 
+int	ft_ditto(int ac, char **av)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	while (i < ac)
+	{
+		j = 0;
+		k = 0;
+		while (j < ac)
+		{
+			if (ft_atol(av[i]) == ft_atol(av[j]))
+				k++;
+			j++;
+		}
+		if (k != 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_checkint(int ac, char **av)
+{
+	int	i;
+
+	i = 0;
+	while (i < ac)
+	{
+		if (ft_atol(av[i]) < -2147483648 || ft_atol(av[i]) > 2147483647)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_checkargs(int ac, char **av)
 {
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		j = 0;
@@ -34,13 +72,10 @@ int	ft_checkargs(int ac, char **av)
 		}
 		i++;
 	}
-	i = 1;
-	while (i < ac)
-	{
-		if ((long)atoi(av[i]) < INT_MIN || (long)atoi(av[i]) > INT_MAX)
-			return (0);
-		i++;
-	}
+	if (!ft_checkint(ac, av))
+		return (0);
+	if (ft_ditto(ac, av))
+		return (0);
 	return (1);
 }
 
@@ -79,22 +114,43 @@ void	ft_clear(t_list *lista, t_list *listb)
 	}
 }
 
-void	ft_view(t_list *list)
-{
-	t_stack	*tmp;
-
-	if (list->first)
-	{
-		tmp = list->first;
-		printf("\n\nstack A\n");
-		while (tmp)
-		{
-			printf("%ld\n", tmp->value);
-			tmp = tmp->next;
-		}
-		printf("\n");
-	}
-}
+/////////////////////////////////////////////////////////////////////////////////////
+/**/void	ft_view(t_list *list)
+/**/{
+/**/	t_stack	*tmp;
+/**/
+/**/	return ;
+/**/	if (list->first)
+/**/	{
+/**/		tmp = list->first;
+/**/		printf("\nstack A\n");
+/**/		while (tmp)
+/**/		{
+/**/			printf("%ld\n", tmp->value);
+/**/			tmp = tmp->next;
+/**/		}
+/**/		printf("\n");
+/**/	}
+/**/}
+/**/
+/**/void	ft_viewb(t_list *list)
+/**/{
+/**/	t_stack	*tmp;
+/**/
+/**/	return ;
+/**/	if (list->first)
+/**/	{
+/**/		tmp = list->first;
+/**/		printf("\n\nstack B\n");
+/**/		while (tmp)
+/**/		{
+/**/			printf("%ld\n", tmp->value);
+/**/			tmp = tmp->next;
+/**/		}
+/**/		printf("\n");
+/**/	}
+/**/}
+/////////////////////////////////////////////////////////////////////////////////////
 
 int	main(int ac, char **av)
 {
@@ -111,18 +167,13 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	ft_clinit(&a, &b);
-	data.si = 0;
-	while (data.si < data.nbargs)
+	data.si = data.nbargs - 1;
+	while (data.si >= 0)
 	{
-		//printf("arg passe : %ld\n", atol(data.args[data.si]));
-		ft_addfirst(&a, atol(data.args[data.si]));
-		data.si++;
+		ft_addfirst(&a, ft_atol(data.args[data.si]));
+		data.si--;
 	}
-	//ft_view(&a);
-	//ft_view(&b);
 	ft_push_swap(&a, &b, data);
-	ft_view(&a);
-	ft_view(&b);
 	ft_clear(&a, &b);
 	ft_argsfree(data);
 	return (0);

@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   ft_sortedbutwrongpos.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/06 00:29:49 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/12 04:44:00 by vduriez          ###   ########.fr       */
+/*   Created: 2021/10/13 10:06:09 by vduriez           #+#    #+#             */
+/*   Updated: 2021/10/13 11:16:18 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long	ft_atol(char *str)
-{
-	long	i;
-	long	signe;
-	long	somme;
+#include "push_swap.h"
 
-	i = 0;
-	signe = 1;
-	somme = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
-		i++;
-	if (str[i] == '+')
-		i++;
-	else if (str[i] == '-')
+int	ft_sortedbutwrongpos(t_list *a)
+{
+	t_stack	*tmp;
+	int		wrong;
+
+	wrong = 0;
+	tmp = a->first->next;
+	while (tmp)
 	{
-		i++;
-		signe = -1;
+		if (tmp->prev->value > tmp->value)
+			wrong++;
+		tmp = tmp->next;
 	}
-	while (str[i] > 47 && str[i] < 58)
-	{
-		somme = 10 * somme + (str[i] - 48);
-		i++;
-	}
-	return (somme * signe);
+	if (wrong > 1)
+		return (0);
+	return (1);
 }

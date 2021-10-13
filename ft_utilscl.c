@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 16:28:10 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/09 08:28:38 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/12 00:16:06 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,15 @@ void	ft_rmfirst(t_list *list)
 		return ;
 	tmp = list->first;
 	if (list->first != list->last)
+	{
 		list->first = list->first->next;
-	if (list->first->prev == NULL)
-		list->first = NULL;
-	else
 		list->first->prev = NULL;
+	}
+	else
+	{
+		list->first = NULL;
+		list->last = NULL;
+	}
 	free(tmp);
 }
 
@@ -82,10 +86,15 @@ void	ft_rmlast(t_list *list)
 	if (!list->last)
 		return ;
 	tmp = list->last;
-	list->last = list->last->prev;
-	if (list->last->next == NULL)
-		list->last = NULL;
-	else
+	if (list->last != list->first)
+	{
+		list->last = list->last->prev;
 		list->last->next = NULL;
+	}
+	else
+	{
+		list->first = NULL;
+		list->last = NULL;
+	}
 	free(tmp);
 }

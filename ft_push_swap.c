@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 03:42:18 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/09 08:31:52 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/13 11:16:44 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,30 @@ long	ft_find_median(t_list *a, t_data data)
 			tmp = tmp->next;
 		}
 		data.diff = ft_abs(data.highest - data.lowest);
-		if (((data.nbargs % 2 == 1) && data.highest == 0)
-			|| ((data.nbargs % 2 == 0) && data.highest == 1))
+		if (((data.nbargs % 2 == 1) && data.diff == 0)
+			|| ((data.nbargs % 2 == 0) && data.diff == 1))
 			return (check->value);
 		check = check->next;
 	}
 	return (0);
+}
+
+t_data	ft_find_limits(t_list *a, t_data data)
+{
+	t_stack	*tmp;
+
+	data.highest = a->first->value;
+	data.lowest = a->first->value;
+	tmp = a->first;
+	while (tmp)
+	{
+		if (tmp->value > data.highest)
+			data.highest = tmp->value;
+		if (tmp->value < data.lowest)
+			data.lowest = tmp->value;
+		tmp = tmp->next;
+	}
+	return (data);
 }
 
 int	ft_check_sorted(t_list *a)
@@ -54,7 +72,7 @@ int	ft_check_sorted(t_list *a)
 	tmp = a->first;
 	while (tmp->next)
 	{
-		if (tmp->value < tmp->next->value)
+		if (tmp->value > tmp->next->value)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -63,14 +81,16 @@ int	ft_check_sorted(t_list *a)
 
 void	ft_push_swap(t_list *a, t_list *b, t_data data)
 {
-	if (ft_check_sorted(a) && !(b->first))
-		return ;
 	data.median = ft_find_median(a, data);
+	data = ft_find_limits(a, data);
+	if (ft_sortedbutwrongpos(a))
+		ft_smart_shift(a, data.lowest);
+	if (ft_check_sorted(a))
+		return ;
 	if (data.nbargs <= 5)
 	{
 		ft_perfect_sort(a, b, data);
 		return ;
 	}
 	ft_best_push(a, b, data);
-	return ;
 }

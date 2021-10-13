@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 05:04:29 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/08 02:35:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/13 11:12:31 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	ft_sb(t_list *b)
 	ft_addfirst(b, tmp);
 	ft_addfirst(b, tmp2);
 	write(1, "sb\n", 3);
+}
+
+void	ft_ss(t_list *a, t_list *b)
+{
+	ft_sa(a);
+	ft_sb(b);
 }
