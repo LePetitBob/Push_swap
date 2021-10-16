@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 11:16:18 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/15 16:13:39 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ typedef struct s_list
 	t_stack	*first;
 	t_stack	*last;
 }				t_list;
+
+typedef struct s_count
+{
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}				t_count;
 
 typedef struct s_data
 {
@@ -56,6 +66,8 @@ typedef struct s_limits
 	long	lowa;
 	long	highb;
 	long	lowb;
+	int		sizea;
+	int		sizeb;
 }			t_limit;
 
 /*////////////////////////////////*/

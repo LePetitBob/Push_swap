@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 02:40:00 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 11:30:37 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/16 20:55:34 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ void	ft_best_push(t_list *a, t_list *b, t_data data)
 	j = 0;
 	while (i < data.nbargs)
 	{
+		if (a->first->value < data.median && a->first->value != data.highest
+			&& a->first->value != data.lowest)
+			j++;
+		if (a->first->value < data.median && a->first->value != data.highest
+			&& a->first->value != data.lowest)
+			ft_pb(a, b);
+		else
+			ft_ra(a);
+		i++;
+	}
+	i = 0;
+	data.median = ft_find_median(a, data);
+	while (i < data.nbargs - j)
+	{
 		if (a->first->value < data.median && a->first->value != data.lowest)
 			j++;
 		if (a->first->value < data.median && a->first->value != data.lowest)
@@ -29,10 +43,10 @@ void	ft_best_push(t_list *a, t_list *b, t_data data)
 			ft_ra(a);
 		i++;
 	}
-	i = 0;
 	while (i < data.nbargs - j)
 	{
-		if (a->first->value > data.median && a->first->value != data.highest)
+		if (a->first->value != data.median && a->first->value != data.highest
+			&& a->first->value != data.lowest)
 			ft_pb(a, b);
 		else
 			ft_ra(a);
@@ -40,5 +54,5 @@ void	ft_best_push(t_list *a, t_list *b, t_data data)
 	}
 	if (!ft_check_sorted(a))
 		ft_sort3(a);
-	ft_insert_sort(a, b, data);
+	ft_best_sort(a, b, data);
 }
