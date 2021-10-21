@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/15 16:13:39 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/21 19:25:45 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_count
 	int	rra;
 	int	rrb;
 	int	rrr;
+	int	bestra;
+	int	bestrb;
+	int	bestrr;
+	int	bestrra;
+	int	bestrrb;
+	int	bestrrr;
+	int	total;
+	int	besttotal;
 }				t_count;
 
 typedef struct s_data
@@ -76,6 +84,8 @@ void	ft_viewb(t_list *list);
 /*////////////////////////////////*/
 
 long	ft_atol(char *str);
+long	ft_find_median(t_list *a, t_data data);
+int		ft_abs(int val);
 int		ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_countnbrs(char *str);
@@ -104,6 +114,7 @@ void	ft_pb(t_list *a, t_list *b);
 void	ft_push_swap(t_list *a, t_list *b, t_data data);
 void	ft_perfect_sort(t_list *a, t_list *b, t_data data);
 void	ft_best_push(t_list *a, t_list *b, t_data data);
+void	ft_best_sort(t_list *a, t_list *b);
 void	ft_argsfree(t_data data);
 void	ft_sort3(t_list *a);
 void	ft_sort5(t_list *a, t_list *b, t_data data);
@@ -112,5 +123,6 @@ void	ft_insert_sort(t_list *a, t_list *b, t_data data);
 void	ft_smart_rotate(t_list *a, t_list *b, t_data data);
 t_data	ft_find_limits(t_list *a, t_data data);
 t_limit	ft_find_limits2(t_list *a, t_list *b, t_limit limits);
+t_limit	ft_limit_compare(t_limit limits);
 
 #endif

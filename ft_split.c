@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:59:11 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/06 03:40:15 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/19 18:01:46 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	**ft_split(char const *str, char c, t_data data)
 		while (ft_strchar(str[data.sk], c) != -1 && str[data.sk] != 0)
 			data.sk++;
 		tab[data.si] = malloc(sizeof(char) * (ft_size_w(str, data.sk, c) + 1));
-		if (!tab)
+		if (!tab[data.si])
 			return (0);
 		while (ft_strchar(str[data.sk], c) == -1 && str[data.sk] != 0)
 			tab[data.si][data.sj++] = str[data.sk++];

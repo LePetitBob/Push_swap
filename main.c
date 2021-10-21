@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 15:48:24 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/19 20:58:48 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	ft_clear(t_list *lista, t_list *listb)
 /**/{
 /**/	t_stack	*tmp;
 /**/
-/**/	return ;
+// /**/	return ;
 /**/	if (list->first)
 /**/	{
 /**/		tmp = list->first;
@@ -137,7 +137,7 @@ void	ft_clear(t_list *lista, t_list *listb)
 /**/{
 /**/	t_stack	*tmp;
 /**/
-/**/	return ;
+// /**/	return ;
 /**/	if (list->first)
 /**/	{
 /**/		tmp = list->first;
@@ -174,6 +174,8 @@ int	main(int ac, char **av)
 		data.si--;
 	}
 	ft_push_swap(&a, &b, data);
+	ft_view(&a);
+	ft_viewb(&b);
 	ft_clear(&a, &b);
 	ft_argsfree(data);
 	return (0);

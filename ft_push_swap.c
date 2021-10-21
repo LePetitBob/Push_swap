@@ -6,13 +6,13 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 03:42:18 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 11:16:44 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/21 19:26:00 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_abs(int val)
+int	ft_abs(int val)
 {
 	if (val < 0)
 		val = -val;
