@@ -5,17 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/12 04:34:39 by vduriez           #+#    #+#              #
-#    Updated: 2021/10/19 17:29:01 by vduriez          ###   ########.fr        #
+#    Created: 2021/10/23 15:42:36 by vduriez           #+#    #+#              #
+#    Updated: 2021/10/23 15:51:20 by vduriez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 NAME = push_swap
+INCLUDES = push_swap.h
 SRCS =	ft_atol.c				\
 		ft_best_push.c			\
 		ft_best_sort.c			\
+		ft_clear.c				\
 		ft_op_push.c			\
 		ft_op_rotate.c			\
 		ft_op_rotate2.c			\
@@ -31,7 +34,9 @@ SRCS =	ft_atol.c				\
 
 OBJ = $(SRCS:.c=.o)
 
-all:
+all:		$(NAME)
+
+$(NAME):	$(INCLUDES) $(SRCS)
 		$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 
 clean:
@@ -42,4 +47,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : clean fclean re
+.PHONY : all clean fclean re

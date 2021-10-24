@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 03:42:18 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/21 19:26:00 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/22 03:12:00 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,6 @@ void	ft_push_swap(t_list *a, t_list *b, t_data data)
 		return ;
 	}
 	ft_best_push(a, b, data);
+	if (ft_sortedbutwrongpos(a))
+		ft_smart_shift(a, data.lowest);
 }

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/21 19:25:45 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/24 14:54:51 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	ft_sb(t_list *list);
 void	ft_ss(t_list *a, t_list *b);
 void	ft_pa(t_list *a, t_list *b);
 void	ft_pb(t_list *a, t_list *b);
+void	ft_clear(t_list *lista, t_list *listb, t_data data);
 void	ft_push_swap(t_list *a, t_list *b, t_data data);
 void	ft_perfect_sort(t_list *a, t_list *b, t_data data);
 void	ft_best_push(t_list *a, t_list *b, t_data data);

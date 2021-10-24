@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/19 20:58:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/24 14:58:26 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,69 +87,42 @@ void	ft_clinit(t_list *lista, t_list *listb)
 	listb->last = NULL;
 }
 
-void	ft_clear(t_list *lista, t_list *listb)
+/////////////////////////////////////////////////////////////////////////////////////
+void	ft_view(t_list *list)
 {
 	t_stack	*tmp;
-	t_stack	*index;
 
-	if (lista)
+///**/	return ;
+	if (list->first)
 	{
-		index = lista->first;
-		while (index)
+		tmp = list->first;
+		printf("\nstack A\n");
+		while (tmp)
 		{
-			tmp = index;
-			index = index->next;
-			free(tmp);
+			printf("%ld\n", tmp->value);
+			tmp = tmp->next;
 		}
-	}
-	if (listb)
-	{
-		index = listb->first;
-		while (index)
-		{
-			tmp = index;
-			index = index->next;
-			free(tmp);
-		}
+		printf("\n");
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
-/**/void	ft_view(t_list *list)
-/**/{
-/**/	t_stack	*tmp;
-/**/
-// /**/	return ;
-/**/	if (list->first)
-/**/	{
-/**/		tmp = list->first;
-/**/		printf("\nstack A\n");
-/**/		while (tmp)
-/**/		{
-/**/			printf("%ld\n", tmp->value);
-/**/			tmp = tmp->next;
-/**/		}
-/**/		printf("\n");
-/**/	}
-/**/}
-/**/
-/**/void	ft_viewb(t_list *list)
-/**/{
-/**/	t_stack	*tmp;
-/**/
-// /**/	return ;
-/**/	if (list->first)
-/**/	{
-/**/		tmp = list->first;
-/**/		printf("\n\nstack B\n");
-/**/		while (tmp)
-/**/		{
-/**/			printf("%ld\n", tmp->value);
-/**/			tmp = tmp->next;
-/**/		}
-/**/		printf("\n");
-/**/	}
-/**/}
+void	ft_viewb(t_list *list)
+{
+	t_stack	*tmp;
+
+/**/	return ;
+	if (list->first)
+	{
+		tmp = list->first;
+		printf("\n\nstack B\n");
+		while (tmp)
+		{
+			printf("%ld\n", tmp->value);
+			tmp = tmp->next;
+		}
+		printf("\n");
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////////
 
 int	main(int ac, char **av)
@@ -159,13 +132,16 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	(void)ac;
+	if (ac != 2 || !av[1][0])
+		write(1, "Error\n", 6);
+	if (ac != 2 || !av[1][0])
+		return (0);
 	data.nbargs = ft_countnbrs(av[1]);
 	data.args = ft_split(av[1], ' ', data);
 	if (ft_checkargs(data.nbargs, data.args) == 0)
-	{
 		write(1, "Error\n", 6);
+	if (ft_checkargs(data.nbargs, data.args) == 0)
 		return (0);
-	}
 	ft_clinit(&a, &b);
 	data.si = data.nbargs - 1;
 	while (data.si >= 0)
@@ -174,9 +150,7 @@ int	main(int ac, char **av)
 		data.si--;
 	}
 	ft_push_swap(&a, &b, data);
-	ft_view(&a);
-	ft_viewb(&b);
-	ft_clear(&a, &b);
-	ft_argsfree(data);
+	ft_clear(&a, &b, data);
+	// ft_view(&a);
 	return (0);
 }
