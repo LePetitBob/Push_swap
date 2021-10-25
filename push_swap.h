@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/24 14:54:51 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/24 23:28:33 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,20 @@ void	ft_sb(t_list *list);
 void	ft_ss(t_list *a, t_list *b);
 void	ft_pa(t_list *a, t_list *b);
 void	ft_pb(t_list *a, t_list *b);
-void	ft_clear(t_list *lista, t_list *listb, t_data data);
+void	ft_clear(t_list *lista, t_list *listb);
 void	ft_push_swap(t_list *a, t_list *b, t_data data);
 void	ft_perfect_sort(t_list *a, t_list *b, t_data data);
 void	ft_best_push(t_list *a, t_list *b, t_data data);
 void	ft_best_sort(t_list *a, t_list *b);
-void	ft_argsfree(t_data data);
 void	ft_sort3(t_list *a);
 void	ft_sort5(t_list *a, t_list *b, t_data data);
 void	ft_smart_shift(t_list *a, long lowest);
 void	ft_insert_sort(t_list *a, t_list *b, t_data data);
-void	ft_smart_rotate(t_list *a, t_list *b, t_data data);
+void	ft_smart_rotate(t_list *a, t_list *b, t_limit limits);
 t_data	ft_find_limits(t_list *a, t_data data);
 t_limit	ft_find_limits2(t_list *a, t_list *b, t_limit limits);
+t_limit	ft_find_limits3(t_list *a);
+t_limit	ft_get_size(t_list *a, t_list *b);
 t_limit	ft_limit_compare(t_limit limits);
 
 #endif

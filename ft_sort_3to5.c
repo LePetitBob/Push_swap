@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 03:02:49 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 11:11:25 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/25 17:12:44 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_smart_move_count(t_list *a, long lowest, int direction)
 	if (direction == 1)
 	{
 		tmp = a->first;
-		while (tmp->value != lowest)
+		while (tmp->value != lowest && tmp)
 		{
 			output++;
 			tmp = tmp->next;
@@ -29,7 +29,7 @@ int	ft_smart_move_count(t_list *a, long lowest, int direction)
 		return (output);
 	}
 	tmp = a->last;
-	while (tmp->value != lowest)
+	while (tmp->value != lowest && tmp)
 	{
 		output++;
 		tmp = tmp->prev;
@@ -89,18 +89,20 @@ void	ft_sort3(t_list *a)
 
 void	ft_sort5(t_list *a, t_list *b, t_data data)
 {
+	t_limit limits;
 	int	nb;
 
-	nb = data.nbargs;
+	nb = data.nbargs - 1;
 	while (nb > 3)
 	{
-		ft_pb(a, b);
-		nb--;
-	}
-	if (b->first->next)
-	{
-		if (b->first < b->first->next)
-			ft_sb(b);
+		limits = ft_find_limits3(a);
+		if (a->first->value == limits.lowa)
+		{
+			ft_pb(a, b);
+			nb--;
+		}
+		else
+			ft_smart_rotate(a, b, limits);
 	}
 	if (!ft_check_sorted(a))
 		ft_sort3(a);

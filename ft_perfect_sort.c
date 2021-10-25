@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:51:10 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/13 04:13:35 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/25 12:35:01 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_insert_sort(t_list *a, t_list *b, t_data data)
 			ft_pa(a, b);
 		else
 			ft_ra(a);
-			//ft_smart_rotate(a, b, data);
 	}
 	if (!ft_check_sorted(a))
 		ft_smart_shift(a, limits.lowest);
@@ -79,12 +78,12 @@ void	ft_insert_sort(t_list *a, t_list *b, t_data data)
 
 void	ft_perfect_sort(t_list *a, t_list *b, t_data data)
 {
-	if (data.nbargs == 2)
+	if (data.nbargs == 3)
 	{
 		ft_sa(a);
 		return ;
 	}
-	if (data.nbargs == 3)
+	if (data.nbargs == 4)
 	{
 		ft_sort3(a);
 		return ;

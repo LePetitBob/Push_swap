@@ -6,13 +6,13 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/23 15:50:12 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/23 15:51:02 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/24 17:35:59 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_clear(t_list *lista, t_list *listb, t_data data)
+void	ft_clear(t_list *lista, t_list *listb)
 {
 	t_stack	*tmp;
 	t_stack	*index;
@@ -37,5 +37,4 @@ void	ft_clear(t_list *lista, t_list *listb, t_data data)
 			free(tmp);
 		}
 	}
-	ft_argsfree(data);
 }

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 15:58:31 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/23 15:38:45 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/25 19:41:40 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,16 @@ t_count	ft_best_count_assign(t_count count)
 	count.bestrrb = count.rrb;
 	count.bestrr = count.rr;
 	count.bestrrr = count.rrr;
+						// printf("	FT_BEST_COUNT_ASSIGN\n");
+						// printf("		Count ra = %d\n", count.ra);
+						// printf("		Count rb = %d\n", count.rb);
+						// printf("		Count rr = %d\n", count.rr);
+						// printf("		Count rra = %d\n", count.rra);
+						// printf("		Count rrb = %d\n", count.rrb);
+						// printf("		Count rrr = %d\n", count.rrr);
+						// printf("		Count total = %d\n", count.total);
+						// printf("		Count besttotal = %d\n", count.besttotal);
+						// getchar();
 	return (count);
 }
 
@@ -128,36 +138,18 @@ int	ft_count_ra(t_list *a, long val, t_count count)
 
 void	ft_application(t_list *a, t_list *b, t_count count)
 {
-	while (count.bestrr)
-	{
+	while (count.bestrr--)
 		ft_rr(a, b);
-		count.bestrr--;
-	}
-	while (count.bestrrr)
-	{
+	while (count.bestrrr--)
 		ft_rrr(a, b);
-		count.bestrrr--;
-	}
-	while (count.bestra)
-	{
+	while (count.bestra--)
 		ft_ra(a);
-		count.bestra--;
-	}
-	while (count.bestrb)
-	{
+	while (count.bestrb--)
 		ft_rb(b);
-		count.bestrb--;
-	}
-	while (count.bestrra)
-	{
+	while (count.bestrra--)
 		ft_rra(a);
-		count.bestrra--;
-	}
-	while (count.bestrrb)
-	{
+	while (count.bestrrb--)
 		ft_rrb(b);
-		count.bestrrb--;
-	}
 	ft_pa(a, b);
 }
 
@@ -174,8 +166,11 @@ t_count	ft_totalcheck(t_count count)
 		count.besttotal = count.total;
 		count = ft_best_count_assign(count);
 	}
-	else if (count.total < count.besttotal)
+	if (count.total < count.besttotal)
+	{
 		count.besttotal = count.total;
+		count = ft_best_count_assign(count);
+	}
 	return (count);
 }
 
@@ -235,29 +230,75 @@ void	ft_best_sort(t_list *a, t_list *b)
 {
 	t_stack	*tmp;
 	t_count	count;
-	int		adjust;
+	t_limit	limits;
+	int		index;
 
 	while (b->first)
 	{
-		adjust = 0;
+		index = 0;
+		limits = ft_find_limits3(b);
 		count = ft_initcount();
 		tmp = b->first;
 		if (!ft_good_to_pa(a, b->first->value, a->first, a->last))
 		{
 			while (tmp)
 			{
-				count = ft_reset_count(count);
-				count.ra = ft_count_ra(a, tmp->value, count);
-				count.rb += adjust;
-				count = ft_r_to_rr(count, a, b);
-				count = ft_count_rrop(count);
-				count = ft_totalcheck(count);
-				if (count.total < count.besttotal)
-					count = ft_best_count_assign(count);
+				if(index <= count.besttotal || (limits.sizea - index) <= count.besttotal)
+				{
+					count = ft_reset_count(count);
+					count.ra = ft_count_ra(a, tmp->value, count);
+					count.rb += index;
+					count = ft_r_to_rr(count, a, b);
+					count = ft_count_rrop(count);
+					count = ft_totalcheck(count);
+				}
 				tmp = tmp->next;
-				adjust++;
+				index++;
 			}
 		}
 		ft_application(a, b, count);
 	}
 }
+
+// void	ft_best_sort(t_list *a, t_list *b)
+// {
+// 	t_stack	*tmp;
+// 	t_count	count;
+// 	t_limit	limits;
+// 	int		index;
+
+// 	while (b->first)
+// 	{
+// 		index = 0;
+// 		limits = ft_find_limits3(b);
+// 		count = ft_initcount();
+// 		tmp = b->first;
+// 		if (!ft_good_to_pa(a, b->first->value, a->first, a->last))
+// 		{
+// 			while (tmp)
+// 			{
+// 				// if (!count.besttotal || (limits.sizea - index) < count.besttotal)
+// 				// {
+// 					count = ft_reset_count(count);
+// 					count.ra = ft_count_ra(a, tmp->value, count);
+// 					count.rb += index;
+// 					count = ft_r_to_rr(count, a, b);
+// 					count = ft_count_rrop(count);
+// 					count = ft_totalcheck(count);
+// 						// printf("	FT_BEST_COUNT_ASSIGN\n");
+// 						// printf("		Count ra = %d\n", count.ra);
+// 						// printf("		Count rb = %d\n", count.rb);
+// 						// printf("		Count rr = %d\n", count.rr);
+// 						// printf("		Count rra = %d\n", count.rra);
+// 						// printf("		Count rrb = %d\n", count.rrb);
+// 						// printf("		Count rrr = %d\n", count.rrr);
+// 						// printf("		Count total = %d\n", count.total);
+// 						// printf("		Count besttotal = %d\n", count.besttotal);
+// 						// getchar();
+// 				tmp = tmp->next;
+// 				index++;
+// 			}
+// 		}
+// 		ft_application(a, b, count);
+// 	}
+// }

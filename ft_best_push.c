@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 02:40:00 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/24 14:57:08 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/25 12:44:53 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	ft_best_push(t_list *a, t_list *b, t_data data)
 		if (a->first->value < data.median && a->first->value != data.highest
 			&& a->first->value != data.lowest)
 		{
-		// 	j++;
+			j++;
 			ft_pb(a, b);
 		}
-		// else
-		// 	ft_ra(a);
+		else
+			ft_ra(a);
 		i++;
 	}
-	/*i = 0;
+	i = 0;
 	data.si = ft_find_median(a, data);
 	while (i < data.nbargs - j)
 	{
@@ -83,7 +83,7 @@ void	ft_best_push(t_list *a, t_list *b, t_data data)
 		else
 			ft_ra(a);
 		i++;
-	}*/
+	}
 	if (!ft_check_sorted(a))
 		ft_sort3(a);
 	ft_best_sort(a, b);

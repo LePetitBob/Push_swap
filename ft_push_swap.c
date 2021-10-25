@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 03:42:18 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/22 03:12:00 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/24 18:49:32 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_push_swap(t_list *a, t_list *b, t_data data)
 		ft_smart_shift(a, data.lowest);
 	if (ft_check_sorted(a))
 		return ;
-	if (data.nbargs <= 5)
+	if (data.nbargs - 1 <= 5)
 	{
 		ft_perfect_sort(a, b, data);
 		return ;

@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/24 14:58:26 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/25 19:21:48 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_ditto(int ac, char **av)
 	int	j;
 	int	k;
 
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		j = 0;
@@ -32,7 +32,9 @@ int	ft_ditto(int ac, char **av)
 				k++;
 			j++;
 		}
-		if (k != 1)
+		if (k > 1)
+			printf("merde1 %s\n", av[i]);
+		if (k > 1)
 			return (1);
 		i++;
 	}
@@ -58,13 +60,14 @@ int	ft_checkargs(int ac, char **av)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		j = 0;
 		while (av[i][j])
 		{
-			if (j == 0 && (av[i][j] != '-' && (av[i][j] < 48 || av[i][j] > 57)))
+			if (j == 0 && (av[i][j] != '+' && av[i][j] != '-'
+				&& (av[i][j] < 48 || av[i][j] > 57)))
 				return (0);
 			if (j != 0 && (av[i][j] < 48 || av[i][j] > 57))
 				return (0);
@@ -131,26 +134,24 @@ int	main(int ac, char **av)
 	t_list	b;
 	t_data	data;
 
-	(void)ac;
-	if (ac != 2 || !av[1][0])
+	if (ac < 2)
 		write(1, "Error\n", 6);
-	if (ac != 2 || !av[1][0])
+	if (ac < 2)
 		return (0);
-	data.nbargs = ft_countnbrs(av[1]);
-	data.args = ft_split(av[1], ' ', data);
-	if (ft_checkargs(data.nbargs, data.args) == 0)
-		write(1, "Error\n", 6);
-	if (ft_checkargs(data.nbargs, data.args) == 0)
+	if (ft_checkargs(ac, av) == 0)
+		write(1, "Error : wrong args\n", 19);
+	if (ft_checkargs(ac, av) == 0)
 		return (0);
 	ft_clinit(&a, &b);
-	data.si = data.nbargs - 1;
-	while (data.si >= 0)
+	data.nbargs = ac - 1;
+	data.si = ac - 1;
+	while (data.si >= 1)
 	{
-		ft_addfirst(&a, ft_atol(data.args[data.si]));
+		ft_addfirst(&a, ft_atol(av[data.si]));
 		data.si--;
 	}
-	ft_push_swap(&a, &b, data);
-	ft_clear(&a, &b, data);
 	// ft_view(&a);
+	ft_push_swap(&a, &b, data);
+	ft_clear(&a, &b);
 	return (0);
 }
