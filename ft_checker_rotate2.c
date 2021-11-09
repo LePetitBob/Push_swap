@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_smart_rotate.c                                  :+:      :+:    :+:   */
+/*   ft_checker_rotate2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 01:27:55 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/26 14:58:21 by vduriez          ###   ########.fr       */
+/*   Created: 2021/10/06 02:57:50 by vduriez           #+#    #+#             */
+/*   Updated: 2021/10/29 12:30:09 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_smart_rotate(t_list *a, t_list *b, t_limit limits)
+void	ft_rra(t_list *list)
 {
-	t_stack	*tmp;
-	int		ri;
-	int		rri;
+	long	tmp;
 
-	ri = 0;
-	tmp = a->first;
-	limits = ft_get_size(a, b);
-	while (tmp && tmp->value != limits.lowa)
-	{
-		ri++;
-		tmp = tmp->next;
-	}
-	rri = limits.sa - ri;
-	if (ri < rri)
-	{
-		ft_ra(a);
-		return ;
-	}
-	ft_rra(a);
+	tmp = list->last->value;
+	ft_rmlast(list);
+	ft_addfirst(list, tmp);
+}
+
+void	ft_rrb(t_list *list)
+{
+	long	tmp;
+
+	tmp = list->last->value;
+	ft_rmlast(list);
+	ft_addfirst(list, tmp);
+}
+
+void	ft_rrr(t_list *a, t_list *b)
+{
+	long	tmp;
+
+	tmp = a->last->value;
+	ft_rmlast(a);
+	ft_addfirst(a, tmp);
+	tmp = b->last->value;
+	ft_rmlast(b);
+	ft_addfirst(b, tmp);
 }

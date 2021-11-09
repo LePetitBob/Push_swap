@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 03:02:49 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/25 17:12:44 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/10/26 17:51:31 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_smart_move_count(t_list *a, long lowest, int direction)
 	if (direction == 1)
 	{
 		tmp = a->first;
-		while (tmp->value != lowest && tmp)
+		while (tmp && tmp->value != lowest)
 		{
 			output++;
 			tmp = tmp->next;
@@ -29,7 +29,7 @@ int	ft_smart_move_count(t_list *a, long lowest, int direction)
 		return (output);
 	}
 	tmp = a->last;
-	while (tmp->value != lowest && tmp)
+	while (tmp && tmp->value != lowest)
 	{
 		output++;
 		tmp = tmp->prev;
@@ -89,17 +89,15 @@ void	ft_sort3(t_list *a)
 
 void	ft_sort5(t_list *a, t_list *b, t_data data)
 {
-	t_limit limits;
-	int	nb;
+	t_limit	limits;
 
-	nb = data.nbargs - 1;
-	while (nb > 3)
+	while (data.nbargs > 3)
 	{
 		limits = ft_find_limits3(a);
 		if (a->first->value == limits.lowa)
 		{
 			ft_pb(a, b);
-			nb--;
+			data.nbargs--;
 		}
 		else
 			ft_smart_rotate(a, b, limits);

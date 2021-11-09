@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/25 19:21:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/09 11:55:38 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_ditto(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		j = 0;
+		j = 1;
 		k = 0;
 		while (j < ac)
 		{
@@ -32,8 +32,6 @@ int	ft_ditto(int ac, char **av)
 				k++;
 			j++;
 		}
-		if (k > 1)
-			printf("merde1 %s\n", av[i]);
 		if (k > 1)
 			return (1);
 		i++;
@@ -52,6 +50,8 @@ int	ft_checkint(int ac, char **av)
 			return (0);
 		i++;
 	}
+	if (ft_ditto(ac, av))
+		return (0);
 	return (1);
 }
 
@@ -59,25 +59,27 @@ int	ft_checkargs(int ac, char **av)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 1;
 	while (i < ac)
 	{
 		j = 0;
-		while (av[i][j])
+		k = 0;
+		while (av[i][k] == ' ')
+			k++;
+		while (av[i][j + k])
 		{
-			if (j == 0 && (av[i][j] != '+' && av[i][j] != '-'
-				&& (av[i][j] < 48 || av[i][j] > 57)))
+			if (j == 0 && (av[i][j + k] != '+' && av[i][j + k] != '-'
+				&& (av[i][j + k] < 48 || av[i][j + k] > 57)))
 				return (0);
-			if (j != 0 && (av[i][j] < 48 || av[i][j] > 57))
+			if (j != 0 && (av[i][j + k] < 48 || av[i][j + k] > 57))
 				return (0);
 			j++;
 		}
 		i++;
 	}
 	if (!ft_checkint(ac, av))
-		return (0);
-	if (ft_ditto(ac, av))
 		return (0);
 	return (1);
 }
@@ -90,44 +92,6 @@ void	ft_clinit(t_list *lista, t_list *listb)
 	listb->last = NULL;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
-void	ft_view(t_list *list)
-{
-	t_stack	*tmp;
-
-///**/	return ;
-	if (list->first)
-	{
-		tmp = list->first;
-		printf("\nstack A\n");
-		while (tmp)
-		{
-			printf("%ld\n", tmp->value);
-			tmp = tmp->next;
-		}
-		printf("\n");
-	}
-}
-
-void	ft_viewb(t_list *list)
-{
-	t_stack	*tmp;
-
-/**/	return ;
-	if (list->first)
-	{
-		tmp = list->first;
-		printf("\n\nstack B\n");
-		while (tmp)
-		{
-			printf("%ld\n", tmp->value);
-			tmp = tmp->next;
-		}
-		printf("\n");
-	}
-}
-/////////////////////////////////////////////////////////////////////////////////////
-
 int	main(int ac, char **av)
 {
 	t_list	a;
@@ -139,7 +103,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (ft_checkargs(ac, av) == 0)
-		write(1, "Error : wrong args\n", 19);
+		write(1, "Error\n", 6);
 	if (ft_checkargs(ac, av) == 0)
 		return (0);
 	ft_clinit(&a, &b);
@@ -150,7 +114,6 @@ int	main(int ac, char **av)
 		ft_addfirst(&a, ft_atol(av[data.si]));
 		data.si--;
 	}
-	// ft_view(&a);
 	ft_push_swap(&a, &b, data);
 	ft_clear(&a, &b);
 	return (0);

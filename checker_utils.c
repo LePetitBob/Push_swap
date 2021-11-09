@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_smart_rotate.c                                  :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 01:27:55 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/26 14:58:21 by vduriez          ###   ########.fr       */
+/*   Created: 2021/10/29 11:15:55 by vduriez           #+#    #+#             */
+/*   Updated: 2021/10/29 12:23:57 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_smart_rotate(t_list *a, t_list *b, t_limit limits)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_stack	*tmp;
-	int		ri;
-	int		rri;
+	size_t	i;
 
-	ri = 0;
-	tmp = a->first;
-	limits = ft_get_size(a, b);
-	while (tmp && tmp->value != limits.lowa)
-	{
-		ri++;
-		tmp = tmp->next;
-	}
-	rri = limits.sa - ri;
-	if (ri < rri)
-	{
-		ft_ra(a);
-		return ;
-	}
-	ft_rra(a);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		++i;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void	ft_clinit(t_list *lista, t_list *listb)
+{
+	lista->first = NULL;
+	lista->last = NULL;
+	listb->first = NULL;
+	listb->last = NULL;
 }
