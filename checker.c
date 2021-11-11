@@ -90,11 +90,10 @@ int	main(int ac, char **av)
 	char	*op;
 
 	op = get_next_line(0);
-	if (op && op[0] == 'E')
-	{
+	if ((op && op[0] == 'E') || !ft_checkargs(ac, av))
 		error_management(&a, &b, op);
+	if ((op && op[0] == 'E') || !ft_checkargs(ac, av))
 		return (0);
-	}
 	get_cl(&a, &b, ac, av);
 	while (1)
 	{

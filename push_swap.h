@@ -99,6 +99,7 @@ int		ft_strlen(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_countnbrs(char *str);
 int		ft_check_sorted(t_list *a);
+int		ft_checkargs(int ac, char **av);
 int		ft_smart_move_count(t_list *a, long highest, int direction);
 int		ft_sortedbutwrongpos(t_list *a);
 int		ft_count_ra(t_list *a, long val, t_count count);
