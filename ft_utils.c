@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:50:29 by vduriez           #+#    #+#             */
-/*   Updated: 2021/10/24 17:35:40 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/12 12:14:48 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ int	ft_countnbrs(char *str)
 			i++;
 	}
 	return (j);
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

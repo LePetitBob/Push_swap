@@ -6,7 +6,7 @@
 #    By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/23 15:42:36 by vduriez           #+#    #+#              #
-#    Updated: 2021/11/11 15:55:16 by vduriez          ###   ########.fr        #
+#    Updated: 2021/11/12 12:15:53 by vduriez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS =			ft_atol.c				\
 				main.c
 
 SRCS_BONUS =	checker.c				\
+				checker_checkargs.c		\
 				checker_utils.c			\
 				get_next_line.c			\
 				get_next_line_utils.c	\
@@ -48,7 +49,6 @@ SRCS_BONUS =	checker.c				\
 				ft_checker_rotate.c		\
 				ft_checker_rotate2.c	\
 				ft_atol.c				\
-				checker_checkargs.c		\
 
 OBJ = $(SRCS:.c=.o)
 BONUS_OBJ = $(SRCS_BONUS:.c=.o)

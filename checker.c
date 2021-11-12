@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:51:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/09 11:58:22 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/12 12:01:19 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_order(t_list *a, t_list *b)
 
 	if (b->first)
 	{
-		write(1, "B is not empty !\n", 17);
+		write(1, "KO\n", 3);
 		return ;
 	}
 	tmp = a->first;
@@ -52,7 +52,7 @@ void	check_order(t_list *a, t_list *b)
 	{
 		if (tmp->next && tmp->value > tmp->next->value)
 		{
-			write(1, "A is not sorted\n", 16);
+			write(1, "KO\n", 3);
 			ft_clear(a, b);
 			return ;
 		}
@@ -90,9 +90,9 @@ int	main(int ac, char **av)
 	char	*op;
 
 	op = get_next_line(0);
-	if ((op && op[0] == 'E') || !ft_checkargs(ac, av))
+	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
 		error_management(&a, &b, op);
-	if ((op && op[0] == 'E') || !ft_checkargs(ac, av))
+	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
 		return (0);
 	get_cl(&a, &b, ac, av);
 	while (1)

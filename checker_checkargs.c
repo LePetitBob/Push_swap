@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 15:53:29 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/11 15:53:49 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/12 12:12:42 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	ft_checkint(int ac, char **av)
 	i = 0;
 	while (i < ac)
 	{
-		if (ft_atol(av[i]) < -2147483648 || ft_atol(av[i]) > 2147483647)
+		if (ft_atol(av[i]) < -2147483648 || ft_atol(av[i]) > 2147483647
+			|| ft_strlen(av[i]) > 10)
 			return (0);
 		i++;
 	}
@@ -52,7 +53,7 @@ int	ft_checkint(int ac, char **av)
 	return (1);
 }
 
-int	ft_checkargs(int ac, char **av)
+int	ft_checkerargs(int ac, char **av)
 {
 	int	i;
 	int	j;
