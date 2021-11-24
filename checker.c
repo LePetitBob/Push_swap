@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:51:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/12 12:01:19 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/24 22:12:09 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	get_cl(t_list *a, t_list *b, int ac, char **av)
 
 void	error_management(t_list *a, t_list *b, char *op)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	free(op);
 	ft_clear(a, b);
 }

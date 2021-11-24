@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 16:54:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/16 15:39:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/24 22:12:08 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (ft_checkargs(ac, av) == 0)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 	if (ft_checkargs(ac, av) == 0)
 		return (0);
 	ft_clinit(&a, &b);
