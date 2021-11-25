@@ -6,19 +6,21 @@
 #    By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/23 15:42:36 by vduriez           #+#    #+#              #
-#    Updated: 2021/11/12 12:15:53 by vduriez          ###   ########.fr        #
+#    Updated: 2021/11/25 03:26:25 by vduriez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
 NAME_BONUS = checker
 
 INCLUDES = push_swap.h
+
+FSANITIZE = -fsanitize=address
 
 SRCS =			ft_atol.c				\
 				ft_best_push.c			\
@@ -55,7 +57,7 @@ BONUS_OBJ = $(SRCS_BONUS:.c=.o)
 
 all:		$(NAME)
 
-$(NAME):		$(INCLUDES) $(OBJ)
+$(NAME):	$(INCLUDES) $(OBJ)
 		$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 bonus:		$(NAME_BONUS)
@@ -63,6 +65,11 @@ bonus:		$(NAME_BONUS)
 $(NAME_BONUS):	$(INCLUDES) $(BONUS_OBJ)
 		$(CC) $(FLAGS) $(BONUS_OBJ) -o $(NAME_BONUS)
 
+fsanitize:	$(FSANITIZE)
+
+$(FSANITIZE):	$(INCLUDES) $(OBJ) $(BONUS_OBJ)
+		$(CC) $(FLAGS) $(FSANITIZE) $(OBJ) -o $(NAME)
+		$(CC) $(FLAGS) $(FSANITIZE) $(BONUS_OBJ) -o $(NAME_BONUS)
 clean:
 		rm -rf $(OBJ) $(BONUS_OBJ)
 

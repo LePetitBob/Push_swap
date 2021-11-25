@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:51:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/24 22:12:09 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/25 23:28:48 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 void	application(t_list *a, t_list *b, char *op)
 {
 	if (!ft_strcmp("ra\n", op))
-		ft_ra(a);
+		ft_chra(a, b);
 	if (!ft_strcmp("rb\n", op))
-		ft_rb(b);
+		ft_chrb(a, b);
 	if (!ft_strcmp("rr\n", op))
-		ft_rr(a, b);
+		ft_chrr(a, b);
 	if (!ft_strcmp("rra\n", op))
-		ft_rra(a);
+		ft_chrra(a, b);
 	if (!ft_strcmp("rrb\n", op))
-		ft_rrb(b);
+		ft_chrrb(a, b);
 	if (!ft_strcmp("rrr\n", op))
-		ft_rrr(a, b);
+		ft_chrrr(a, b);
 	if (!ft_strcmp("pa\n", op))
-		ft_pa(a, b);
+		ft_chpa(a, b);
 	if (!ft_strcmp("pb\n", op))
-		ft_pb(a, b);
+		ft_chpb(a, b);
 	if (!ft_strcmp("sa\n", op))
-		ft_sa(a);
+		ft_chsa(a, b);
 	if (!ft_strcmp("sb\n", op))
-		ft_sb(b);
+		ft_chsb(a, b);
 	if (!ft_strcmp("ss\n", op))
-		ft_ss(a, b);
+		ft_chss(a, b);
 }
 
 void	check_order(t_list *a, t_list *b)
@@ -44,7 +44,7 @@ void	check_order(t_list *a, t_list *b)
 
 	if (b->first)
 	{
-		write(1, "KO\n", 3);
+		write(2, "KO\n", 3);
 		return ;
 	}
 	tmp = a->first;
@@ -52,7 +52,7 @@ void	check_order(t_list *a, t_list *b)
 	{
 		if (tmp->next && tmp->value > tmp->next->value)
 		{
-			write(1, "KO\n", 3);
+			write(2, "KO\n", 3);
 			ft_clear(a, b);
 			return ;
 		}
@@ -89,6 +89,8 @@ int	main(int ac, char **av)
 	t_list	b;
 	char	*op;
 
+	if (ac < 2)
+		return (0);
 	op = get_next_line(0);
 	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
 		error_management(&a, &b, op);
@@ -99,10 +101,7 @@ int	main(int ac, char **av)
 	{
 		if (op)
 			application(&a, &b, op);
-		if (op)
-			free(op);
-		if (!op)
-			free(op);
+		free(op);
 		if (!op)
 			break ;
 		op = get_next_line(0);

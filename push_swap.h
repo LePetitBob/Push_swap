@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/12 12:18:58 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/25 23:27:58 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,18 @@ void	ft_sb(t_list *list);
 void	ft_ss(t_list *a, t_list *b);
 void	ft_pa(t_list *a, t_list *b);
 void	ft_pb(t_list *a, t_list *b);
+void	ft_chra(t_list *a, t_list *b);
+void	ft_chrb(t_list *a, t_list *b);
+void	ft_chrr(t_list *a, t_list *b);
+void	ft_chrra(t_list *a, t_list *b);
+void	ft_chrrb(t_list *a, t_list *b);
+void	ft_chrrr(t_list *a, t_list *b);
+void	ft_chsa(t_list *a, t_list *b);
+void	ft_chsb(t_list *a, t_list *b);
+void	ft_chss(t_list *a, t_list *b);
+void	ft_chpa(t_list *a, t_list *b);
+void	ft_chpb(t_list *a, t_list *b);
+void	ft_exit(t_list *a, t_list *b);
 void	ft_clear(t_list *lista, t_list *listb);
 void	ft_push_swap(t_list *a, t_list *b, t_data data);
 void	ft_perfect_sort(t_list *a, t_list *b, t_data data);
