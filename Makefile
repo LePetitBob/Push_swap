@@ -6,7 +6,7 @@
 #    By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/23 15:42:36 by vduriez           #+#    #+#              #
-#    Updated: 2021/11/25 03:26:25 by vduriez          ###   ########.fr        #
+#    Updated: 2021/11/28 18:41:14 by vduriez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS =			ft_atol.c				\
 SRCS_BONUS =	checker.c				\
 				checker_checkargs.c		\
 				checker_utils.c			\
+				checker_exits.c			\
 				get_next_line.c			\
 				get_next_line_utils.c	\
 				ft_utilscl.c			\

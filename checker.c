@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:51:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/28 16:22:29 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/28 18:43:16 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ void	application(t_list *a, t_list *b, char *op)
 		ft_chsb(a, b);
 	if (!ft_strcmp("ss\n", op))
 		ft_chss(a, b);
+}
+
+int	wrong_command(char *op)
+{
+	if (ft_strcmp("ra\n", op) && ft_strcmp("rb\n", op)
+		&& ft_strcmp("rr\n", op) && ft_strcmp("rra\n", op)
+		&& ft_strcmp("rrb\n", op) && ft_strcmp("rrr\n", op)
+		&& ft_strcmp("pa\n", op) && ft_strcmp("pb\n", op)
+		&& ft_strcmp("sa\n", op) && ft_strcmp("sb\n", op)
+		&& ft_strcmp("ss\n", op))
+		return (1);
+	printf("boop\n");
+	return (0);
 }
 
 void	check_order(t_list *a, t_list *b, int print)
@@ -77,22 +90,6 @@ void	get_cl(t_list *a, t_list *b, int ac, char **av)
 	}
 }
 
-void	empty_management(t_list *a, t_list *b, char *op)
-{
-	if (!b->first && a->first)
-		check_order(a, b, 0);
-	free(op);
-	exit(1);
-}
-
-void	error_management(t_list *a, t_list *b, char *op)
-{
-	write(2, "Error\n", 6);
-	free(op);
-	ft_clear(a, b);
-	exit(1);
-}
-
 int	main(int ac, char **av)
 {
 	t_list	a;
@@ -101,12 +98,14 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
+	if (!ft_checkerargs(ac, av))
+		error_management(&a, &b);
 	op = get_next_line(0);
-	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
-		error_management(&a, &b, op);
-	get_cl(&a, &b, ac, av);
 	if (!op)
 		empty_management(&a, &b, op);
+	get_cl(&a, &b, ac, av);
+	if (wrong_command(op))
+		wrong_management(&a, &b, op);
 	while (1)
 	{
 		if (op)

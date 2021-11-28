@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 05:11:17 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/25 23:27:58 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/28 18:41:57 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,10 @@ void	ft_smart_shift(t_list *a, long lowest);
 void	ft_insert_sort(t_list *a, t_list *b, t_data data);
 void	ft_smart_rotate(t_list *a, t_list *b, t_limit limits);
 void	ft_application(t_list *a, t_list *b, t_count count);
+void	empty_management(t_list *a, t_list *b, char *op);
+void	error_management(t_list *a, t_list *b);
+void	wrong_management(t_list *a, t_list *b, char *op);
+void	check_order(t_list *a, t_list *b, int print);
 t_data	ft_find_limits(t_list *a, t_data data);
 t_count	ft_best_count(t_count count, t_list *a, t_list *b);
 t_count	ft_totalcheck(t_count count);
