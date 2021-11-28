@@ -6,7 +6,7 @@
 /*   By: vduriez <vduriez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 16:51:32 by vduriez           #+#    #+#             */
-/*   Updated: 2021/11/25 23:28:48 by vduriez          ###   ########.fr       */
+/*   Updated: 2021/11/28 16:22:29 by vduriez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	application(t_list *a, t_list *b, char *op)
 		ft_chss(a, b);
 }
 
-void	check_order(t_list *a, t_list *b)
+void	check_order(t_list *a, t_list *b, int print)
 {
 	t_stack	*tmp;
 
 	if (b->first)
 	{
-		write(2, "KO\n", 3);
+		write(2, "KO\n", 3 * print);
 		return ;
 	}
 	tmp = a->first;
@@ -52,14 +52,15 @@ void	check_order(t_list *a, t_list *b)
 	{
 		if (tmp->next && tmp->value > tmp->next->value)
 		{
-			write(2, "KO\n", 3);
+			write(2, "KO\n", 3 * print);
 			ft_clear(a, b);
 			return ;
 		}
 		tmp = tmp->next;
 	}
-	write(1, "OK\n", 3);
+	write(1, "OK\n", 3 * print);
 	ft_clear(a, b);
+	exit(0);
 }
 
 void	get_cl(t_list *a, t_list *b, int ac, char **av)
@@ -76,11 +77,20 @@ void	get_cl(t_list *a, t_list *b, int ac, char **av)
 	}
 }
 
+void	empty_management(t_list *a, t_list *b, char *op)
+{
+	if (!b->first && a->first)
+		check_order(a, b, 0);
+	free(op);
+	exit(1);
+}
+
 void	error_management(t_list *a, t_list *b, char *op)
 {
 	write(2, "Error\n", 6);
 	free(op);
 	ft_clear(a, b);
+	exit(1);
 }
 
 int	main(int ac, char **av)
@@ -94,9 +104,9 @@ int	main(int ac, char **av)
 	op = get_next_line(0);
 	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
 		error_management(&a, &b, op);
-	if ((op && op[0] == 'E') || !ft_checkerargs(ac, av))
-		return (0);
 	get_cl(&a, &b, ac, av);
+	if (!op)
+		empty_management(&a, &b, op);
 	while (1)
 	{
 		if (op)
@@ -106,6 +116,6 @@ int	main(int ac, char **av)
 			break ;
 		op = get_next_line(0);
 	}
-	check_order(&a, &b);
+	check_order(&a, &b, 1);
 	return (0);
 }
